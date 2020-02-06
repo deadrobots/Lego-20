@@ -47,10 +47,11 @@ def lower_ramp():
 
 
 def go_up_ramp():
-    d.timed_line_follow_right_smooth(7500)
+    d.timed_line_follow_right_smooth(7400)
     msleep(100)
     # at the top of the ramp
     g.drive_distance(-30, 2)
     msleep(100)
     g.turn_with_gyro(0, 50, 90)
     msleep(100)
+

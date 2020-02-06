@@ -43,5 +43,5 @@ LA_BACK = 1900
 LA_FRONT = 0
 LA_SIDE = 1300
 
-RA_DOWN = 100 #placeholder values
-RA_UP = 1000
+RA_DOWN = 2040
+RA_UP = 0
