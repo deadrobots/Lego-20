@@ -17,7 +17,8 @@ RIGHT_MOTOR = 0
 LEFT_MOTOR = 3
 
 # servo ports
-LEFT_ARM = 0   # placeholder
+LEFT_ARM = 0
+RIGHT_ARM = 3
 
 # analog ports
 RIGHT_TOPHAT = 0
@@ -41,3 +42,6 @@ ON_BLACK = 2000
 LA_BACK = 1900
 LA_FRONT = 0
 LA_SIDE = 1300
+
+RA_DOWN = 100 #placeholder values
+RA_UP = 1000

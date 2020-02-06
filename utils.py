@@ -101,11 +101,16 @@ def wait_4_light(ignore=False):
 # servo functions
 
 def move_servo(servo, end_position, speed=10):
+    # speed of 1 is slow
+    # speed of 2000 is fast
+    # speed of 10 is the default
     now = get_servo_position(servo)
-    if now > 2047:
+    if end_position > 2047:
         print("Servo setting too large ", servo)
-    if now < 0:
+        DEBUG()
+    if end_position < 0:
         print("Servo setting too small ", servo)
+        DEBUG()
     if now > end_position:
         speed = -speed
     for i in range(now, end_position, speed):

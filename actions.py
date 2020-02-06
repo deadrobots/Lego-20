@@ -20,6 +20,7 @@ def init():
     g.drive_timed(-30, 1000)
     # testing servos
     set_servo_position(c.LEFT_ARM, c.LA_FRONT)
+    set_servo_position(c.RIGHT_ARM, c.RA_UP)
     if c.IS_PRIME:
         print("i am prime")
     else:
