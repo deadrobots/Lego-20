@@ -41,7 +41,8 @@ ON_BLACK = 2000
 # servo arm values
 LA_BACK = 1900
 LA_FRONT = 0
-LA_SIDE = 1300
+LA_SIDE = 1400
+
 
 RA_DOWN = 2040
 RA_UP = 0

@@ -20,7 +20,6 @@ def init():
     g.drive_timed(-30, 1000)
     # testing servos
     set_servo_position(c.LEFT_ARM, c.LA_FRONT)
-    set_servo_position(c.RIGHT_ARM, c.RA_UP)
     if c.IS_PRIME:
         print("i am prime")
     else:
@@ -30,24 +29,36 @@ def init():
 
 
 def lower_ramp():
-    #g.drive_timed_left_right(50, 50, 5000)
     g.drive_distance(60, 18)
     msleep(100)
     set_servo_position(c.LEFT_ARM, c.LA_SIDE)
     msleep(250)
-    #g.drive_timed_left_right(-50, -50, 2000)
-    g.drive_distance(-60, 8)
+    g.drive_distance(-60, 9)
     msleep(100)
-    #g.drive_timed_left_right(50, 50, 2500)
-    g.drive_distance(60, 9)
+
+
+def move_coupler_to_blocks():
+    print "move coupler"
+    g.pivot_on_left_wheel(50, 100)
+    d.line_follow_right(1500)
     msleep(100)
-    g.turn_with_gyro(0, 50, 90)
+    d.cross_line()
+    msleep(50)
+    d.line_follow_right_left(4500)
     msleep(100)
-    set_servo_position(c.LEFT_ARM, c.LA_BACK)
+    d.set_servo_position(c.LEFT_ARM, c.LA_FRONT)
+
+
+def back_to_up_ramp_position():
+    g.drive_timed(-50, 8500)
+    msleep(1000)
+    g.pivot_on_right_wheel(50, 90)
+    d.drive_timed(50, 50, 2000)
+    g.pivot_on_left_wheel(50, 90)
 
 
 def go_up_ramp():
-    d.timed_line_follow_right_smooth(7400)
+    d.timed_line_follow_right_smooth(7300)
     msleep(100)
     # at the top of the ramp
     g.drive_distance(-30, 2)
@@ -55,3 +66,7 @@ def go_up_ramp():
     g.turn_with_gyro(0, 50, 90)
     msleep(100)
 
+
+def reverse_and_turn():
+    g.drive_distance(-50, 18)
+    g.pivot_on_right_wheel(-30,45)

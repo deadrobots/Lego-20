@@ -53,6 +53,14 @@ def on_white_left():
 def on_white_right():
     return analog(c.RIGHT_TOPHAT) < c.ON_BLACK
 
+def cross_line():
+    drive(0, 40)
+    while on_white_right():
+        pass
+    msleep(20)
+    while on_black_right():
+        pass
+
 
 def line_follow_until_switch():
     while digital(c.ARM_SWITCH) == 0:
@@ -83,6 +91,14 @@ def line_follow_right(time):
             drive(40, 70)    # drive values may need to be changed
     drive(0, 0)
 
+def line_follow_right_left(time):
+    sec = seconds()
+    while seconds() - sec < time/1000.0:
+        if on_black_right():
+            drive(40, 70)    # drive values may need to be changed
+        else:
+            drive(70, 40)    # drive values may need to be changed
+    drive(0, 0)
 
 def timed_line_follow_left(time):
     sec = seconds() + time/1000.0
