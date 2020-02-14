@@ -11,21 +11,48 @@ def init():
     print("don't touch me, i'm calibrating!!")
     g.calibrate_gyro()
     # testing motors
+    print("testing motors")
     g.drive_timed(30, 1000)
     # pivoting left and right
     g.pivot_on_left_wheel(30, 15)
     g.pivot_on_left_wheel(-30, 15)
-    g.pivot_on_right_wheel(30, 15)
-    g.pivot_on_right_wheel(-30, 15)
     g.drive_timed(-30, 1000)
-    # testing servos
-    set_servo_position(c.LEFT_ARM, c.LA_FRONT)
     if c.IS_PRIME:
-        print("i am prime")
+        print("i am lego prime")
     else:
-        print("i am clone")
+        print("i am lego clone")
+    # testing servos
+    print("testing left arm")
+    u.move_servo(c.LEFT_ARM, c.LA_FRONT)
+    u.move_servo(c.LEFT_ARM, c.LA_BACK)
+    u.move_servo(c.LEFT_ARM, c.LA_FRONT)
+    print("testing front arm")
+    u.move_servo(c.FRONT_ARM, c.FA_UP)
+    u.move_servo(c.FRONT_ARM, c.FA_MID)
+    u.move_servo(c.FRONT_ARM, c.FA_UP)
+    print("testing left arm")
+    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED)
+    u.move_servo(c.FRONT_CLAW, c.FC_OPEN)
+    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED)
+    # testing tophat
+    print("testing right tophat")
+    g.drive_condition(50, d.on_white_right)
+    msleep(500)
+    print("see black")
+    g.drive_condition(50, d.on_black_right)
+    msleep(500)
+    print("see white")
+    g.drive_timed(50, 500)
+    print("testing left tophat")
+    g.drive_condition(-50, d.on_white_left)
+    msleep(500)
+    print("see black")
+    g.drive_condition(-50, d.on_black_left)
+    msleep(500)
+    print("see white")
+    g.drive_timed(-50, 500)
     u.wait_for_button()
-    g.calibrate_gyro()
+    # g.calibrate_gyro()
 
 
 def lower_ramp():
