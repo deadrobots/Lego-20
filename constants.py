@@ -36,30 +36,40 @@ if IS_PRIME:  # Red Lego
     # sensor values
     ON_BLACK = 2000
 
-    # servo arm values
+    # servo values
     LA_BACK = 1750
     LA_FRONT = 0
     LA_SIDE = 1400
 
-    FA_DOWN = 1600 # to edit
-    FA_MID = 600  # Ground on flat surface to edit
+    FA_DOWN1 = 1300
+    FA_DOWN2 = 1500
+    FA_DOWN3 = 1700
+    FA_DROP = 950
+    FA_MID = 400  # Ground on flat surface
     FA_UP = 0
 
-    FC_OPEN = 1400
-    FC_CLOSED = 800
+    FC_OPEN = 1000
+    FC_CLOSED = 500
+    FC_OPEN_BIN = 1050
+    FC_CLOSED_BIN = 0
 else:  # IS_CLONE (Yellow Lego)
     # sensor values
     ON_BLACK = 2000
 
-    # servo arm values
+    # servo values
     LA_BACK = 1850
     LA_FRONT = 100
     LA_SIDE = 1550
 
-    FA_DOWN = 1600
+    FA_DOWN1 = 1300
+    FA_DOWN2 = 1500
+    FA_DOWN3 = 1700
+    FA_DROP = 950
     FA_MID = 600  # Ground on flat surface
     FA_UP = 0
 
     FC_OPEN = 1400
     FC_CLOSED = 800
+    FC_OPEN_BIN = 1050
+    FC_CLOSED_BIN = 0
 
