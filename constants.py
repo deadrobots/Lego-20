@@ -43,15 +43,19 @@ if IS_PRIME:  # Red Lego
 
     FA_DOWN1 = 1300
     FA_DOWN2 = 1500
-    FA_DOWN3 = 1700
+    FA_DOWN3 = 1900 #1700
     FA_DROP = 950
     FA_MID = 400  # Ground on flat surface
     FA_UP = 0
+    FA_COUPLER_DOWN = 1070
+    FA_SMOOSH_UP = 800
+    FA_SMOOSH_DOWN = 1150
 
     FC_OPEN = 1000
     FC_CLOSED = 500
     FC_OPEN_BIN = 1050
     FC_CLOSED_BIN = 0
+    FC_COUPLER_OPEN = 660
 else:  # IS_CLONE (Yellow Lego)
     # sensor values
     ON_BLACK = 2000
@@ -67,9 +71,12 @@ else:  # IS_CLONE (Yellow Lego)
     FA_DROP = 950
     FA_MID = 600  # Ground on flat surface
     FA_UP = 0
+    FA_COUPLER_DOWN = 1180 #placeholder
 
     FC_OPEN = 1400
     FC_CLOSED = 800
     FC_OPEN_BIN = 1050
     FC_CLOSED_BIN = 0
+    FC_COUPLER_OPEN = 660  #placeholder
+
 

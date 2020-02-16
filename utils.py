@@ -32,6 +32,15 @@ def wait_for_button():
     msleep(1000)
 
 
+def wait_for_switch(port):
+    print("Press switch...")
+    while not digital(port):
+        pass
+    msleep(1)
+    print("Pressed")
+    msleep(1000)
+
+
 def DEBUG():
     freeze(c.LEFT_MOTOR)
     freeze(c.RIGHT_MOTOR)

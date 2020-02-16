@@ -15,9 +15,13 @@ def main():
     # a. move_coupler_to_blocks()
     # a.back_to_up_ramp_position()
     # a.go_up_ramp()
-    a.go_to_center()
-    u.wait_for_button()
-    a.reverse_and_turn()
+    a.grab_poms()
+    a.deliver_poms()
+    a.return_to_poms()
+    a.grab_poms()
+    a.deliver_poms()
+    a.smoosh_poms()
+    a.return_to_poms()
     u.DEBUG()
 
 
