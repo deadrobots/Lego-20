@@ -19,18 +19,13 @@ def init():
     u.move_servo(c.FRONT_ARM, c.FA_UP)
     u.move_servo(c.FRONT_CLAW, c.FC_CLOSED)
 
-
-
     # for start at top of ramp
     u.move_servo(c.LEFT_ARM, c.LA_SIDE)
     u.move_servo(c.FRONT_ARM, c.FA_MID)
     u.move_servo(c.FRONT_CLAW, c.FC_CLOSED)
 
-
-
     u.wait_for_button()
     c.START_TIME = seconds()
-
 
 def power_on_test():
     # testing servos
@@ -125,60 +120,40 @@ def go_up_ramp():
 
 def grab_poms():
     d.line_follow_until_switch()
-    g.drive_distance(-50, 4)
+    g.drive_distance(-65, 4)
     u.move_servo(c.FRONT_ARM, c.FA_DOWN1)
-    msleep(500)
     u.move_servo(c.FRONT_CLAW, c.FC_OPEN_BIN, 5)
-    msleep(500)
-    g.drive_distance(25, .6)
-    msleep(500)
+    g.drive_distance(40, .6)
     u.move_servo(c.FRONT_ARM, c.FA_DOWN2, 5)
-    msleep(500)
-    g.drive_distance(25, 1)
-    msleep(500)
+    g.drive_distance(40, 1)
     u.move_servo(c.FRONT_ARM, c.FA_DOWN3, 5)
-    msleep(500)
     u.move_servo(c.FRONT_CLAW, c.FC_CLOSED_BIN, 5)
-    msleep(500)
     u.move_servo(c.FRONT_ARM, c.FA_DOWN2, 3)
-    msleep(500)
-    g.drive_distance(-25, .9)
-    msleep(500)
+    g.drive_distance(-40, .9)
     u.move_servo(c.FRONT_ARM, c.FA_DOWN1, 3)
-    msleep(500)
-    g.drive_distance(-25, .6)
-    msleep(500)
+    g.drive_distance(-40, .6)
     u.move_servo(c.FRONT_ARM, c.FA_MID, 3)
 
 
 def deliver_poms():
-    g.drive_distance(-50, 6)
-    g.pivot_on_right_wheel(-30,45)
-    g.drive_distance(25, .3)
-    msleep(500)
-    u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 2)
-    msleep(500)
-    g.drive_distance(25, .6)
-    msleep(500)
-    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN, 2)
-    msleep(500)
+    g.drive_distance(-65, 6)
+    g.pivot_on_right_wheel(-60,45)
+    g.drive_distance(40, .3)
+    u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 3)
+    g.drive_distance(40, .6)
+    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN, 3)
 
 def smoosh_poms():
     u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_UP)
-    msleep(500)
-    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED_BIN + 75, 2)
-    msleep(500)
-    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 3)
-    msleep(500)
+    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED_BIN + 85, 4)
+    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 5)
 
 
 def return_to_poms():
     u.move_servo(c.FRONT_ARM, c.FA_MID)
-    msleep(500)
-    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED, 2)
-    msleep(500)
-    g.pivot_on_left_wheel(-30, 45)
-    msleep(500)
+    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED)
+    g.pivot_on_left_wheel(-65, 45)
+    msleep(100)
 
 
 
