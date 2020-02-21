@@ -60,14 +60,15 @@ def cross_line():
     msleep(20)
     while on_black_right():
         pass
+    drive(0, 0)
 
 
 def line_follow_until_switch():
     while digital(c.ARM_SWITCH) == 0:
         if on_black_right():
-            drive_timed(60, 50, 10)
+            drive_timed(90, 70, 20)
         else:
-            drive_timed(50, 60, 10)
+            drive_timed(70, 90, 20)
     freeze(c.LEFT_MOTOR)
     freeze(c.RIGHT_MOTOR)
 
@@ -91,6 +92,7 @@ def line_follow_right(time):
             drive(40, 70)    # drive values may need to be changed
     drive(0, 0)
 
+
 def line_follow_right_left(time):
     sec = seconds()
     while seconds() - sec < time/1000.0:
@@ -99,6 +101,7 @@ def line_follow_right_left(time):
         else:
             drive(70, 40)    # drive values may need to be changed
     drive(0, 0)
+
 
 def timed_line_follow_left(time):
     sec = seconds() + time/1000.0
