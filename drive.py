@@ -19,6 +19,9 @@ def drive_timed(left_speed, right_speed, time):
     ao()
 
 
+
+
+
 def tick_drive(left_speed, right_speed, time):
     if left_speed > 1400:
         print("speed too fast. please pick a number under 1401.")
@@ -140,6 +143,16 @@ def timed_line_follow_right(time):
             drive_timed(90, 20, 20)
         else:
             drive_timed(20, 90, 20)
+        msleep(10)
+
+
+def distance_line_follow_right_left(distance):
+    g._clear_ticks()
+    while abs((get_motor_position_counter(c.RIGHT_MOTOR) + get_motor_position_counter(c.LEFT_MOTOR)) / 2) < distance * g.INCHES_TO_TICKS:
+        if on_black_right():
+            drive_timed(40, 70, 10)
+        else:
+            drive_timed(70, 40, 10)
         msleep(10)
 
 
