@@ -89,7 +89,10 @@ def move_coupler_to_blocks():
     msleep(50)
     u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN, 100)
     u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 100)    #may need to add turn after this to knock cubes over
-    d.line_follow_right_left(4800)
+    d.line_follow_right_left(2000)
+    g.turn_with_gyro(-50, 50, 25)
+    g.turn_with_gyro(40, -40, 25)
+    d.line_follow_right_left_smooth(2800)
     msleep(50)
     d.set_servo_position(c.LEFT_ARM, c.LA_FRONT)
 
@@ -139,12 +142,20 @@ def grab_poms():
 
 
 def deliver_poms():
-    g.drive_distance(-65, 18)
+    '''g.drive_distance(-65, 18)    # works for the first delivery but caster ball gets stuck on second
     g.turn_with_gyro(-50, 50, 50)
     u.wait_for_button()
     g.drive_distance(50, .7)
     u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 3)
     g.drive_distance(50, .3)
+    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN, 3)'''
+    g.drive_distance(-65, 8)
+    u.wait_for_button()
+    g.turn_with_gyro(-50, 50, 90)
+    u.wait_for_button()
+    # g.drive_distance(-50, 2)
+    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 3)
+    # g.drive_distance(50, .3)
     u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN, 3)
 
 
@@ -155,10 +166,15 @@ def smoosh_poms():
 
 
 def return_to_poms():
-    u.move_servo(c.FRONT_ARM, c.FA_MID)
+    '''u.move_servo(c.FRONT_ARM, c.FA_MID)  # with old delivery
     u.move_servo(c.FRONT_CLAW, c.FC_CLOSED)
     g.drive_distance(-50,1)
     g.turn_with_gyro(75, -75, 45)
+    msleep(100)'''
+    u.move_servo(c.FRONT_ARM, c.FA_MID)
+    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED)
+    g.drive_distance(-50, 1)
+    g.turn_with_gyro(75, -75, 90)
     msleep(100)
 
 
