@@ -93,13 +93,23 @@ def line_follow_right(time):
     drive(0, 0)
 
 
-def line_follow_right_left(time):
+def line_follow_right_left(time):   # follows on the left side of the line with the right sensor
     sec = seconds()
     while seconds() - sec < time/1000.0:
         if on_black_right():
             drive(40, 70)    # drive values may need to be changed
         else:
             drive(70, 40)    # drive values may need to be changed
+    drive(0, 0)
+
+
+def line_follow_right_left_smooth(time):
+    sec = seconds()
+    while seconds() - sec < time/1000.0:
+        if on_black_right():
+            drive(40, 50)    # drive values may need to be changed
+        else:
+            drive(50, 40)    # drive values may need to be changed
     drive(0, 0)
 
 
