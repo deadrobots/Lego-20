@@ -95,7 +95,6 @@ def move_coupler_to_blocks():
     msleep(50)
     u.move_servo(c.FRONT_CLAW, c.FC_OPEN, 100)
     u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN - 20, 100)  # may need to add turn after this to knock cubes over
-    # d.line_follow_right_left(2000)
     d.distance_line_follow_right_left(6)
     g.turn_with_gyro(-80, 80, 30)
     msleep(100)
