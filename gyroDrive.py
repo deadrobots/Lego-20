@@ -11,11 +11,12 @@ bias = 0
 addition_factor = 1.920137e-16
 multiplication_factor = 0.000004470956
 
-
 if c.IS_PRIME:
-    INCHES_TO_TICKS = 200   # subject to change
+    INCHES_TO_TICKS = 200
+    # subject to change
 else:
-    INCHES_TO_TICKS = 217   # subject to change
+    INCHES_TO_TICKS = 225
+    # subject to change
 
 
 def _clear_ticks():

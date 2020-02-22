@@ -87,8 +87,8 @@ def move_coupler_to_blocks():
     msleep(100)
     d.cross_line()
     msleep(50)
-    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN, 100)
-    u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 100)    #may need to add turn after this to knock cubes over
+    u.move_servo(c.FRONT_CLAW, c.FC_OPEN, 100)
+    u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 100) #may need to add turn after this to knock cubes over
     d.line_follow_right_left(4800)
     msleep(50)
     d.set_servo_position(c.LEFT_ARM, c.LA_FRONT)
@@ -100,6 +100,15 @@ def back_to_up_ramp_position():
     u.move_servo(c.LEFT_ARM, c.LA_BACK, 100)
     u.move_servo(c.FRONT_ARM, c.FA_UP, 100)
     u.move_servo(c.FRONT_CLAW, c.FC_CLOSED, 100)
+    if c.IS_PRIME:
+        g.drive_distance(70, 1)
+        msleep(50)
+        g.pivot_on_right_wheel(70, 90)
+    else:
+        g.drive_distance(70, 0.5)
+        msleep(50)
+        g.pivot_on_right_wheel(70, 92)
+
     g.drive_distance(70, 1)
     msleep(50)
     g.pivot_on_right_wheel(70, 90)
@@ -107,7 +116,7 @@ def back_to_up_ramp_position():
     g.drive_distance(-70, 3.5)
     g.pivot_on_left_wheel(50, 90)
     g.drive_distance(70, 2)
-    set_servo_position(c.LEFT_ARM, c.LA_SIDE)  # fold in left arm
+    set_servo_position(c.LEFT_ARM, c.LA_RAMP_SIDE)  # fold in left arm
 
 
 def go_up_ramp():
@@ -117,6 +126,7 @@ def go_up_ramp():
     g.drive_distance(-90, 2)
     msleep(50)
     g.turn_with_gyro(0, 75, 90)
+    u.wait_for_button()
     msleep(50)
     u.move_servo(c.FRONT_ARM, c.FA_MID)
 

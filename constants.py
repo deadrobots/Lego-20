@@ -56,6 +56,9 @@ if IS_PRIME:  # Red Lego
     FC_OPEN_BIN = 1020
     FC_CLOSED_BIN = 300 #430
     FC_COUPLER_OPEN = 1280
+
+    #gyro
+    TURN_CONVERSION = 5400
 else:  # IS_CLONE (Yellow Lego)
     # sensor values
     ON_BLACK = 2000
@@ -64,6 +67,7 @@ else:  # IS_CLONE (Yellow Lego)
     LA_BACK = 1850
     LA_FRONT = 100
     LA_SIDE = 1550
+    LA_RAMP_SIDE = 1250
 
     FA_DOWN1 = 1300
     FA_DOWN2 = 1500
@@ -71,12 +75,14 @@ else:  # IS_CLONE (Yellow Lego)
     FA_DROP = 950
     FA_MID = 600  # Ground on flat surface
     FA_UP = 0
-    FA_COUPLER_DOWN = 1180 #placeholder
+    FA_COUPLER_DOWN = 850
 
-    FC_OPEN = 1400
+    FC_OPEN = 1850
     FC_CLOSED = 800
     FC_OPEN_BIN = 1050
     FC_CLOSED_BIN = 0
-    FC_COUPLER_OPEN = 660  #placeholder
+    FC_COUPLER_OPEN = 660
 
+    # gyro
+    TURN_CONVERSION = 5200
 
