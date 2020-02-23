@@ -48,15 +48,15 @@ if IS_PRIME:  # Red Lego
     FA_DROP = 950
     FA_MID = 400  # ground on flat surface
     FA_UP = 0
-    FA_COUPLER_DOWN = 950
+    FA_COUPLER_DOWN = 1000
     FA_SMOOSH_UP = 800
     FA_SMOOSH_DOWN = 1200
 
-    FC_OPEN = 1000
+    FC_OPEN = 1350
     FC_CLOSED = 500
     FC_OPEN_BIN = 1020
     FC_CLOSED_BIN = 300 # 430
-    FC_COUPLER_OPEN = 1280
+    FC_COUPLER_OPEN = 625
 
     #gyro
     TURN_CONVERSION = 5200  #5400

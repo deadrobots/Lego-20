@@ -14,7 +14,9 @@ def init():
     enable_servos()
     print("don't touch me, i'm calibrating!!")
     g.calibrate_gyro()
+
     #power_on_test()
+
     u.move_servo(c.LEFT_ARM, c.LA_FRONT)
     u.move_servo(c.FRONT_ARM, c.FA_UP)
     u.move_servo(c.FRONT_CLAW, c.FC_CLOSED)
@@ -94,7 +96,7 @@ def move_coupler_to_blocks():
     d.cross_line()
     msleep(50)
     u.move_servo(c.FRONT_CLAW, c.FC_OPEN, 100)
-    u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN - 20, 100)  # may need to add turn after this to knock cubes over
+    u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 100)  # may need to add turn after this to knock cubes over
     d.distance_line_follow_right_left(6)
     g.turn_with_gyro(-80, 80, 30)
     msleep(100)
@@ -159,7 +161,22 @@ def deliver_poms():
     g.turn_with_gyro(-70, 50, 88)  # 90
     g.drive_distance(-30, 0.5)  # 2
     u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 3)
-    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN, 3)
+    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN, 20)
+    d.drive_timed(-20, 20, 175)
+    d.drive_timed(20, -20, 175)
+    d.drive_timed(-20, 20, 175)
+    d.drive_timed(20, -20, 175)
+    d.drive_timed(-20, 20, 175)
+    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED_BIN, 2)
+    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_UP, 3)
+    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 3)
+    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN, 20)
+    d.drive_timed(-20, 20, 175)
+    d.drive_timed(20, -20, 175)
+    d.drive_timed(-20, 20, 175)
+    d.drive_timed(20, -20, 175)
+    d.drive_timed(-20, 10, 175)
+    u.DEBUG()
 
 
 def smoosh_poms():
