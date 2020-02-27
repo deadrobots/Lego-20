@@ -8,6 +8,9 @@ RIGHT_BUTTON = 13
 LEFT_BUTTON = 14
 ARM_SWITCH = 0
 
+#motor speeds
+WIGGLE_SPEED = 10
+
 # prime/clone
 IS_CLONE = digital(CLONE_SWITCH)
 IS_PRIME = not IS_CLONE

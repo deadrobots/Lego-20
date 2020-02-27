@@ -76,7 +76,7 @@ def power_on_test():
 def lower_ramp():
     g.drive_distance(60, 23)
     msleep(100)
-    set_servo_position(c.LEFT_ARM, c.LA_SIDE)
+    set_servo_position(c.LEFT_ARM, c.LA_SIDE)  #grab coupler
     msleep(250)
     g.drive_condition(-60, d.on_white_left)
     msleep(100)
@@ -87,28 +87,30 @@ def lower_ramp():
 def move_coupler_to_blocks():
     print "move coupler"
     # g.pivot_on_left_wheel(80, 70)
-    g.pivot_on_left_wheel(80, 90)
+    g.turn_with_gyro(-60, 60, 90)
     msleep(100)
-    g.drive_distance(-50, 1)
+    g.drive_distance(-50, 6)
     g.drive_condition(60, d.on_white_left)
-    d.line_follow_right(1700)
-    msleep(100)
-    d.cross_line()
-    msleep(50)
     u.move_servo(c.FRONT_CLAW, c.FC_OPEN, 100)
-    u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 100)  # may need to add turn after this to knock cubes over
-    d.distance_line_follow_right_left(6)
-    g.turn_with_gyro(-80, 80, 30)
-    msleep(100)
-    g.turn_with_gyro(40, -40, 30)
+    u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 100)
+    g.drive_distance(60, 22)
+    # d.line_follow_right(1700)
+    # msleep(100)
+    # d.cross_line()
+    # msleep(50)
+  # may need to add turn after this to knock cubes over
+    # d.distance_line_follow_right_left(6)
+    # g.turn_with_gyro(-80, 80, 30)
+    # msleep(100)
+    # g.turn_with_gyro(40, -40, 30)
     # d.line_follow_right_left_smooth(1800)   # 2000
-    d.distance_line_follow_right_left(8)
+    # d.distance_line_follow_right_left(7.5)
     msleep(50)
     d.set_servo_position(c.LEFT_ARM, c.LA_FRONT)
 
 
 def back_to_up_ramp_position():
-    g.drive_timed(-90, 5400) # square up
+    g.drive_timed(-90, 5200)  # square up
     msleep(100)
     u.move_servo(c.LEFT_ARM, c.LA_BACK, 100)
     u.move_servo(c.FRONT_ARM, c.FA_UP, 100)
@@ -117,15 +119,14 @@ def back_to_up_ramp_position():
         msleep(50)
         g.pivot_on_right_wheel(70, 95)  # 90
     else:
-        g.drive_distance(70, 0.5)
+        # g.drive_distance(70, 0.5)
         msleep(50)
         g.pivot_on_right_wheel(70, 92)
-    g.drive_distance(70, 13)
-    g.drive_distance(-70, 3.5)
+    g.drive_distance(70, 17)
+    g.drive_distance(-70, 4)
     g.pivot_on_left_wheel(50, 95)  # 90
     g.drive_distance(70, 2)
-    if c.IS_CLONE:
-        set_servo_position(c.LEFT_ARM, c.LA_RAMP_SIDE)  # fold in left arm
+    set_servo_position(c.LEFT_ARM, c.LA_RAMP_SIDE)  # fold in left arm
 
 
 def go_up_ramp():
@@ -157,26 +158,26 @@ def grab_poms():
 
 
 def deliver_poms():
-    g.drive_distance(-65, 7)
+    g.drive_distance(-65, 6)
     g.turn_with_gyro(-70, 50, 88)  # 90
     g.drive_distance(-30, 0.5)  # 2
-    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 3)
+    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 5)
     u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN, 20)
-    d.drive_timed(-20, 20, 175)
-    d.drive_timed(20, -20, 175)
-    d.drive_timed(-20, 20, 175)
-    d.drive_timed(20, -20, 175)
-    d.drive_timed(-20, 20, 175)
-    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED_BIN, 2)
-    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_UP, 3)
+    d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
+    d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
+    d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 350)
+    d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
+    d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
+    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED_BIN, 3)
+    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_UP, 5)
     u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 3)
-    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN, 20)
-    d.drive_timed(-20, 20, 175)
-    d.drive_timed(20, -20, 175)
-    d.drive_timed(-20, 20, 175)
-    d.drive_timed(20, -20, 175)
-    d.drive_timed(-20, 10, 175)
-    u.DEBUG()
+    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN + 50, 20)
+    d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
+    d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
+    d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 350)
+    d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
+    d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
+
 
 
 def smoosh_poms():
