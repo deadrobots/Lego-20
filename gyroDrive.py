@@ -12,11 +12,15 @@ addition_factor = 1.920137e-16
 multiplication_factor = 0.000004470956
 
 if c.IS_PRIME:
-    INCHES_TO_TICKS = 200
+    # if the drive is too short, increase inches_to_ticks
+    #if the turn is too short, increase turn_conversion
+    INCHES_TO_TICKS = 220
     # subject to change
+    TURN_CONVERSION = 5350
 else:
     INCHES_TO_TICKS = 225
     # subject to change
+    TURN_CONVERSION = 5200
 
 
 def _clear_ticks():
@@ -40,6 +44,17 @@ def calibrate_gyro():
     bias = avg/i
     msleep(60)
 
+def calibrate_spin():
+    calibrate_gyro()
+    turn_with_gyro(75, -75, 360)
+    _freeze_motors()
+    msleep(1000)
+
+def calibrate_drive():
+    calibrate_gyro()
+    drive_distance(75, 24)
+    _freeze_motors()
+    msleep(1000)
 
 #######################################
 # drive functions
@@ -106,6 +121,7 @@ def drive_timed_left_right(left_speed, right_speed, time):
 
 
 def drive_distance(speed, distance):
+    # distance is in inches
     # calibrate_gyro()
     _clear_ticks()
     # print("driving for distance")
@@ -146,7 +162,7 @@ def drive_condition(speed, test_function, state=True):  # needs some work
 def turn_with_gyro(left_wheel_speed, right_wheel_speed, target_theta_deg):
     # calibrate_gyro()
     # print("turning")
-    target_theta = round(target_theta_deg * c.TURN_CONVERSION)
+    target_theta = round(target_theta_deg * TURN_CONVERSION)
     theta = 0
     while theta < target_theta:
         motor(c.RIGHT_MOTOR, right_wheel_speed)
@@ -160,7 +176,7 @@ def turn_with_gyro(left_wheel_speed, right_wheel_speed, target_theta_deg):
 def pivot_on_left_wheel(right_wheel_speed, target_theta_deg):
     # calibrate_gyro()
     # print("pivoting on left")
-    target_theta = round(target_theta_deg * c.TURN_CONVERSION)
+    target_theta = round(target_theta_deg * TURN_CONVERSION)
     theta = 0
     while theta < target_theta:
         motor(c.RIGHT_MOTOR, right_wheel_speed)
@@ -175,7 +191,7 @@ def pivot_on_left_wheel(right_wheel_speed, target_theta_deg):
 def pivot_on_right_wheel(left_wheel_speed, target_theta_deg):
     # calibrate_gyro()
     # print("pivoting on right")
-    target_theta = round(target_theta_deg * c.TURN_CONVERSION)
+    target_theta = round(target_theta_deg * TURN_CONVERSION)
     theta = 0
     while theta < target_theta:
         motor(c.RIGHT_MOTOR, 0)

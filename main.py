@@ -13,7 +13,6 @@ def main():
     a.init()
     a.lower_ramp()
     a. move_coupler_to_blocks()
-    u.wait_for_button()
     a.back_to_up_ramp_position()
     a.go_up_ramp()
     a.grab_poms()
@@ -21,12 +20,12 @@ def main():
     u.wait_for_button()
     u.move_servo(c.FRONT_ARM, c.FA_UP)
     u.DEBUG()
-    a.smoosh_poms()
+    # a.smoosh_poms()
     #a.return_to_poms()
     #a.grab_poms()
     #a.deliver_poms()
     #a.smoosh_poms()
-    a.return_to_poms()
+    #a.return_to_poms()
     u.DEBUG()
 
 

@@ -134,13 +134,12 @@ def go_up_ramp():
     msleep(100)
     # at the top of the ramp
     g.drive_distance(-90, 2)
-    msleep(50)
     g.turn_with_gyro(0, 75, 90)
-    msleep(50)
     u.move_servo(c.FRONT_ARM, c.FA_MID)
 
 
 def grab_poms():
+    g.drive_distance(100, 2)
     d.line_follow_until_switch()
     g.drive_distance(-65, 4)
     u.move_servo(c.FRONT_ARM, c.FA_DOWN1)
@@ -158,8 +157,8 @@ def grab_poms():
 
 
 def deliver_poms():
-    g.drive_distance(-65, 6)
-    g.turn_with_gyro(-70, 50, 88)  # 90
+    g.drive_distance(-65, 7)
+    g.turn_with_gyro(-70, 50, 82)
     g.drive_distance(-30, 0.5)  # 2
     u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 5)
     u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN, 20)
@@ -168,15 +167,15 @@ def deliver_poms():
     d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 350)
     d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
     d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
-    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED_BIN, 3)
     u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_UP, 5)
     u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 3)
-    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN + 50, 20)
+    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN + 60, 20)
     d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
     d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
     d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 350)
     d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
     d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
+    u.move_servo(c. FRONT_CLAW, c.FC_OPEN )
 
 
 

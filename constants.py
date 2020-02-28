@@ -18,8 +18,6 @@ IS_PRIME = not IS_CLONE
 # time
 START_TIME = 0
 
-# gyro
-TURN_CONVERSION = 5400  # subject to change following calibration
 
 # motor ports
 RIGHT_MOTOR = 0
@@ -52,17 +50,16 @@ if IS_PRIME:  # Red Lego
     FA_MID = 400  # ground on flat surface
     FA_UP = 0
     FA_COUPLER_DOWN = 1000
-    FA_SMOOSH_UP = 800
+    FA_SMOOSH_UP = 950
     FA_SMOOSH_DOWN = 1200
 
     FC_OPEN = 1350
     FC_CLOSED = 500
     FC_OPEN_BIN = 1020
-    FC_CLOSED_BIN = 300 # 430
-    FC_COUPLER_OPEN = 625
+    FC_CLOSED_BIN = 100 # 430
+    FC_COUPLER_OPEN = 625  # 625
 
-    #gyro
-    TURN_CONVERSION = 5200  #5400
+  #5400
 else:  # IS_CLONE (Yellow Lego)
     # sensor values
     ON_BLACK = 2000
@@ -87,6 +84,5 @@ else:  # IS_CLONE (Yellow Lego)
     FC_CLOSED_BIN = 0
     FC_COUPLER_OPEN = 660
 
-    # gyro
-    TURN_CONVERSION = 5200
+
 
