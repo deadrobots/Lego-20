@@ -70,7 +70,6 @@ def power_on_test():
     msleep(500)
     print("see white")
     g.drive_timed(-50, 500)
-    # g.calibrate_gyro()
 
 
 def lower_ramp():
@@ -86,25 +85,13 @@ def lower_ramp():
 
 def move_coupler_to_blocks():
     print "move coupler"
-    # g.pivot_on_left_wheel(80, 70)
     g.turn_with_gyro(-60, 60, 90)
     msleep(100)
     g.drive_distance(-50, 6)
     g.drive_condition(60, d.on_white_left)
     u.move_servo(c.FRONT_CLAW, c.FC_OPEN, 100)
     u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 100)
-    g.drive_distance(60, 22)
-    # d.line_follow_right(1700)
-    # msleep(100)
-    # d.cross_line()
-    # msleep(50)
-  # may need to add turn after this to knock cubes over
-    # d.distance_line_follow_right_left(6)
-    # g.turn_with_gyro(-80, 80, 30)
-    # msleep(100)
-    # g.turn_with_gyro(40, -40, 30)
-    # d.line_follow_right_left_smooth(1800)   # 2000
-    # d.distance_line_follow_right_left(7.5)
+    g.drive_distance(60, 21)
     msleep(50)
     d.set_servo_position(c.LEFT_ARM, c.LA_FRONT)
 
@@ -131,17 +118,16 @@ def back_to_up_ramp_position():
 
 def go_up_ramp():
     d.timed_line_follow_right_smooth(7500)
-    msleep(100)
     # at the top of the ramp
     g.drive_distance(-90, 2)
-    g.turn_with_gyro(0, 75, 90)
+    g.turn_with_gyro(0, 75, 82)
     u.move_servo(c.FRONT_ARM, c.FA_MID)
 
 
 def grab_poms():
-    g.drive_distance(100, 2)
+    #g.drive_distance(100, 2)
     d.line_follow_until_switch()
-    g.drive_distance(-65, 4)
+    g.drive_distance(-65, 3) #4
     u.move_servo(c.FRONT_ARM, c.FA_DOWN1)
     u.move_servo(c.FRONT_CLAW, c.FC_OPEN_BIN, 5)
     g.drive_distance(50, .6)
@@ -158,24 +144,26 @@ def grab_poms():
 
 def deliver_poms():
     g.drive_distance(-65, 7)
-    g.turn_with_gyro(-70, 50, 82)
+    g.turn_with_gyro(-70, 50, 76)
     g.drive_distance(-30, 0.5)  # 2
     u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 5)
-    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN, 20)
-    d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
-    d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
-    d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 350)
-    d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
-    d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
-    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_UP, 5)
-    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 3)
     u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN + 60, 20)
     d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
     d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
     d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 350)
     d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
     d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
-    u.move_servo(c. FRONT_CLAW, c.FC_OPEN )
+    u.move_servo(c.FRONT_CLAW, c.FC_OPEN, 20)
+    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_UP)
+    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED_BIN)
+    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN)
+    #u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN + 60, 20)
+    # d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
+    # d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
+    # d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 350)
+    # d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
+    # d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
+    #u.move_servo(c. FRONT_CLAW, c.FC_OPEN )
 
 
 
