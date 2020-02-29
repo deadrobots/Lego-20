@@ -160,6 +160,7 @@ def drive_condition(speed, test_function, state=True):  # needs some work
 # all of these turn/pivots measure the change gyro_z to make the turn or pivot more excact
 
 def turn_with_gyro(left_wheel_speed, right_wheel_speed, target_theta_deg):
+    # don't use negative values for target_theta_degrees
     # calibrate_gyro()
     # print("turning")
     target_theta = round(target_theta_deg * TURN_CONVERSION)
@@ -174,6 +175,7 @@ def turn_with_gyro(left_wheel_speed, right_wheel_speed, target_theta_deg):
 
 
 def pivot_on_left_wheel(right_wheel_speed, target_theta_deg):
+    # target_theta_deg must always be positive
     # calibrate_gyro()
     # print("pivoting on left")
     target_theta = round(target_theta_deg * TURN_CONVERSION)
@@ -189,6 +191,7 @@ def pivot_on_left_wheel(right_wheel_speed, target_theta_deg):
 
 
 def pivot_on_right_wheel(left_wheel_speed, target_theta_deg):
+    # target_theta_deg must always be positive
     # calibrate_gyro()
     # print("pivoting on right")
     target_theta = round(target_theta_deg * TURN_CONVERSION)

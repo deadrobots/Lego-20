@@ -15,7 +15,7 @@ def init():
     print("don't touch me, i'm calibrating!!")
     g.calibrate_gyro()
 
-    #power_on_test()
+    power_on_test()
 
     u.move_servo(c.LEFT_ARM, c.LA_FRONT)
     u.move_servo(c.FRONT_ARM, c.FA_UP)
@@ -86,12 +86,18 @@ def lower_ramp():
 def move_coupler_to_blocks():
     print "move coupler"
     g.turn_with_gyro(-60, 60, 90)
+    #square up here
     msleep(100)
     g.drive_distance(-50, 6)
     g.drive_condition(60, d.on_white_left)
     u.move_servo(c.FRONT_CLAW, c.FC_OPEN, 100)
     u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 100)
-    g.drive_distance(60, 21)
+    g.drive_distance(60, 7)
+    u.move_servo(c.FRONT_ARM, c.FA_KNOCK)
+    g.pivot_on_left_wheel(100, 20)
+    g.pivot_on_left_wheel(-100, 25)
+    u.move_servo(c. FRONT_ARM, c.FA_COUPLER_DOWN)
+    g.drive_distance(100, 13)
     msleep(50)
     d.set_servo_position(c.LEFT_ARM, c.LA_FRONT)
 
@@ -126,6 +132,8 @@ def go_up_ramp():
 
 def grab_poms():
     #g.drive_distance(100, 2)
+    print "Don't go any further, test all servo positions so that you don't break anything"
+    u.DEBUG()
     d.line_follow_until_switch()
     g.drive_distance(-65, 3) #4
     u.move_servo(c.FRONT_ARM, c.FA_DOWN1)
@@ -179,6 +187,11 @@ def return_to_poms():
     g.turn_with_gyro(70, -50, 88)    # 90
     g.drive_distance(-50, 4)
     msleep(100)
+
+def get_back_down_from_ramp():
+    g.turn_with_gyro(50, -50, 90)
+    u.wait_for_button()
+
 
 
 

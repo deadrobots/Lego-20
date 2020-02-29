@@ -52,6 +52,8 @@ if IS_PRIME:  # Red Lego
     FA_COUPLER_DOWN = 1000
     FA_SMOOSH_UP = 950
     FA_SMOOSH_DOWN = 1200
+    FA_KNOCK = 820
+    FA_UNDER_BRIDGE = 780
 
     FC_OPEN = 1350
     FC_CLOSED = 500
@@ -66,7 +68,7 @@ else:  # IS_CLONE (Yellow Lego)
 
     # servo values
     LA_BACK = 1850
-    LA_FRONT = 100
+    LA_FRONT = 350
     LA_SIDE = 1550
     LA_RAMP_SIDE = 1250
 
@@ -75,8 +77,13 @@ else:  # IS_CLONE (Yellow Lego)
     FA_DOWN3 = 1700
     FA_DROP = 950
     FA_MID = 600  # Ground on flat surface
-    FA_UP = 0
+    FA_UP = 200
     FA_COUPLER_DOWN = 850
+    FA_SMOOSH_UP = 950
+    FA_SMOOSH_DOWN = 1200
+    FA_KNOCK = 820
+    FA_UNDER_BRIDGE = 780
+
 
     FC_OPEN = 1850
     FC_CLOSED = 800
