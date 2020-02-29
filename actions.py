@@ -127,7 +127,7 @@ def go_up_ramp():
     # at the top of the ramp
     g.drive_distance(-90, 2)
     g.turn_with_gyro(0, 75, 82)
-    u.move_servo(c.FRONT_ARM, c.FA_MID)
+    u.move_servo(c.FRONT_ARM, c.FA_MID)   
 
 
 def grab_poms():
