@@ -15,7 +15,7 @@ def init():
     print("don't touch me, i'm calibrating!!")
     g.calibrate_gyro()
 
-    power_on_test()
+    # power_on_test()
 
     u.move_servo(c.LEFT_ARM, c.LA_FRONT)
     u.move_servo(c.FRONT_ARM, c.FA_UP)
@@ -97,7 +97,7 @@ def move_coupler_to_blocks():
     g.pivot_on_left_wheel(100, 20)
     g.pivot_on_left_wheel(-100, 25)
     u.move_servo(c. FRONT_ARM, c.FA_COUPLER_DOWN)
-    g.drive_distance(100, 13)
+    g.drive_distance(100, 14)
     msleep(50)
     d.set_servo_position(c.LEFT_ARM, c.LA_FRONT)
 
@@ -117,7 +117,7 @@ def back_to_up_ramp_position():
         g.pivot_on_right_wheel(70, 92)
     g.drive_distance(70, 17)
     g.drive_distance(-70, 4)
-    g.pivot_on_left_wheel(50, 95)  # 90
+    g.pivot_on_left_wheel(50, 90)  # 90
     g.drive_distance(70, 2)
     set_servo_position(c.LEFT_ARM, c.LA_RAMP_SIDE)  # fold in left arm
 
@@ -127,13 +127,14 @@ def go_up_ramp():
     # at the top of the ramp
     g.drive_distance(-90, 2)
     g.turn_with_gyro(0, 75, 82)
-    u.move_servo(c.FRONT_ARM, c.FA_MID)   
+    u.move_servo(c.FRONT_ARM, c.FA_MID)
 
 
 def grab_poms():
     #g.drive_distance(100, 2)
-    print "Don't go any further, test all servo positions so that you don't break anything"
-    u.DEBUG()
+    if(c.IS_CLONE):
+        print "Don't go any further, test all servo positions so that you don't break anything"
+        u.DEBUG()
     d.line_follow_until_switch()
     g.drive_distance(-65, 3) #4
     u.move_servo(c.FRONT_ARM, c.FA_DOWN1)
@@ -154,8 +155,8 @@ def deliver_poms():
     g.drive_distance(-65, 7)
     g.turn_with_gyro(-70, 50, 76)
     g.drive_distance(-30, 0.5)  # 2
-    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 5)
-    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN + 60, 20)
+    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 8)
+    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN + 60, 5)
     d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
     d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
     d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 350)
@@ -165,20 +166,13 @@ def deliver_poms():
     u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_UP)
     u.move_servo(c.FRONT_CLAW, c.FC_CLOSED_BIN)
     u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN)
-    #u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN + 60, 20)
-    # d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
-    # d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
-    # d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 350)
-    # d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
-    # d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
-    #u.move_servo(c. FRONT_CLAW, c.FC_OPEN )
-
 
 
 def smoosh_poms():
     u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_UP)
     u.move_servo(c.FRONT_CLAW, c.FC_CLOSED_BIN + 85, 5)
     u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 6)
+    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED)
 
 
 def return_to_poms():
@@ -189,8 +183,28 @@ def return_to_poms():
     msleep(100)
 
 def get_back_down_from_ramp():
-    g.turn_with_gyro(50, -50, 90)
+    g.turn_with_gyro(50, -50, 80)
+    u.move_servo(c.LEFT_ARM, c.LA_FRONT, 80)
+    g.drive_distance(-70, 20)
+    g.turn_with_gyro(-50, 50, 90)
+    d.timed_line_follow_left(6000)
+    g.drive_distance(80, 15)
     u.wait_for_button()
+    g.turn_with_gyro(-50, 50, 90)
+    u.wait_for_button()
+
+def get_back_to_coupler():
+    g.drive_distance(50, 2)
+    g.drive_condition(-60, d.on_white_left)
+    g.turn_with_gyro(-50, 50, 90)
+    g.drive_distance(-50, 4)
+    u.move_servo(c.FRONT_CLAW, c.FC_OPEN, 100)
+    u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 100)
+    msleep(100)
+    g.drive_distance(60, 27)
+    u.move_servo(c.LEFT_ARM, c.LA_SIDE, 20)
+    g.drive_distance(-50, 25)
+
 
 
 

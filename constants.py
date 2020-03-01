@@ -68,7 +68,7 @@ else:  # IS_CLONE (Yellow Lego)
 
     # servo values
     LA_BACK = 1850
-    LA_FRONT = 350
+    LA_FRONT = 0
     LA_SIDE = 1550
     LA_RAMP_SIDE = 1250
 

@@ -14,13 +14,13 @@ multiplication_factor = 0.000004470956
 if c.IS_PRIME:
     # if the drive is too short, increase inches_to_ticks
     #if the turn is too short, increase turn_conversion
-    INCHES_TO_TICKS = 220
+    INCHES_TO_TICKS = 215
     # subject to change
-    TURN_CONVERSION = 5350
+    TURN_CONVERSION = 5375
 else:
-    INCHES_TO_TICKS = 225
+    INCHES_TO_TICKS = 230
     # subject to change
-    TURN_CONVERSION = 5200
+    TURN_CONVERSION = 5428
 
 
 def _clear_ticks():
@@ -52,7 +52,7 @@ def calibrate_spin():
 
 def calibrate_drive():
     calibrate_gyro()
-    drive_distance(75, 24)
+    drive_distance(75, 20)
     _freeze_motors()
     msleep(1000)
 
