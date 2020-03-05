@@ -73,10 +73,9 @@ def power_on_test():
 
 
 def lower_ramp():
-    g.drive_distance(60, 23)
+    g.drive_distance(75, 23)
     msleep(100)
     set_servo_position(c.LEFT_ARM, c.LA_SIDE)  #grab coupler
-    msleep(250)
     g.drive_condition(-60, d.on_white_left)
     msleep(100)
     d.square_up_black(-50, -50)
@@ -88,7 +87,7 @@ def move_coupler_to_blocks():
     g.turn_with_gyro(-60, 60, 90)
     #square up here
     msleep(100)
-    g.drive_distance(-50, 6)
+    g.drive_distance(-60, 6)
     g.drive_condition(60, d.on_white_left)
     u.move_servo(c.FRONT_CLAW, c.FC_OPEN, 100)
     u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 100)
@@ -112,13 +111,12 @@ def back_to_up_ramp_position():
         msleep(50)
         g.pivot_on_right_wheel(70, 95)  # 90
     else:
-        # g.drive_distance(70, 0.5)
         msleep(50)
         g.pivot_on_right_wheel(70, 92)
-    g.drive_distance(70, 17)
+    g.drive_distance(80, 17)
     g.drive_distance(-70, 4)
-    g.pivot_on_left_wheel(50, 90)  # 90
-    g.drive_distance(70, 2)
+    g.pivot_on_left_wheel(80, 90)  # 90
+    g.drive_distance(80, 2)
     set_servo_position(c.LEFT_ARM, c.LA_RAMP_SIDE)  # fold in left arm
 
 
@@ -126,7 +124,7 @@ def go_up_ramp():
     d.timed_line_follow_right_smooth(7500)
     # at the top of the ramp
     g.drive_distance(-90, 2)
-    g.turn_with_gyro(0, 75, 82)
+    g.turn_with_gyro(0, 85, 82)
     u.move_servo(c.FRONT_ARM, c.FA_MID)
 
 
@@ -138,72 +136,75 @@ def grab_poms():
     d.line_follow_until_switch()
     g.drive_distance(-65, 3) #4
     u.move_servo(c.FRONT_ARM, c.FA_DOWN1)
-    u.move_servo(c.FRONT_CLAW, c.FC_OPEN_BIN, 5)
+    u.move_servo(c.FRONT_CLAW, c.FC_OPEN_BIN, 7)
     g.drive_distance(50, .6)
-    u.move_servo(c.FRONT_ARM, c.FA_DOWN2, 5)
+    u.move_servo(c.FRONT_ARM, c.FA_DOWN2, 7)
     g.drive_distance(50, 1)
-    u.move_servo(c.FRONT_ARM, c.FA_DOWN3, 5)
+    u.move_servo(c.FRONT_ARM, c.FA_DOWN3, 7)
     u.move_servo(c.FRONT_CLAW, c.FC_CLOSED_BIN, 5)
-    u.move_servo(c.FRONT_ARM, c.FA_DOWN2, 3)
+    u.move_servo(c.FRONT_ARM, c.FA_DOWN2, 7)
     g.drive_distance(-50, .9)
-    u.move_servo(c.FRONT_ARM, c.FA_DOWN1, 3)
+    u.move_servo(c.FRONT_ARM, c.FA_DOWN1, 7)
     g.drive_distance(-50, .6)
-    u.move_servo(c.FRONT_ARM, c.FA_MID, 3)
+    u.move_servo(c.FRONT_ARM, c.FA_MID, 7)
 
 
 def deliver_poms():
-    g.drive_distance(-65, 7)
+    g.drive_distance(-75, 7)
     g.turn_with_gyro(-70, 50, 76)
-    g.drive_distance(-30, 0.5)  # 2
-    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 8)
-    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN + 60, 5)
+    g.drive_distance(-50, 0.5)  # 2
+    u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 8)
+    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN + 65, 5)
     d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
     d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
     d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 350)
     d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
     d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
-    u.move_servo(c.FRONT_CLAW, c.FC_OPEN, 20)
-    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_UP)
-    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED_BIN)
-    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN)
+    u.move_servo(c.FRONT_CLAW, c.FC_OPEN, 7)
 
 
 def smoosh_poms():
     u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_UP)
-    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED_BIN + 85, 5)
-    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 6)
-    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED)
+    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED_BIN)
+    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 9)
 
 
 def return_to_poms():
     u.move_servo(c.FRONT_ARM, c.FA_MID)
     u.move_servo(c.FRONT_CLAW, c.FC_CLOSED)
     g.turn_with_gyro(70, -50, 88)    # 90
-    g.drive_distance(-50, 4)
-    msleep(100)
+    g.drive_distance(-70, 4)
+
 
 def get_back_down_from_ramp():
-    g.turn_with_gyro(50, -50, 80)
+    g.turn_with_gyro(60, -60, 80)
     u.move_servo(c.LEFT_ARM, c.LA_FRONT, 80)
     g.drive_distance(-70, 20)
-    g.turn_with_gyro(-50, 50, 90)
-    d.timed_line_follow_left(6000)
+    g.turn_with_gyro(-70, 70, 90)
+    d.timed_line_follow_left(4500)
     g.drive_distance(80, 15)
-    u.wait_for_button()
-    g.turn_with_gyro(-50, 50, 90)
-    u.wait_for_button()
+    g.turn_with_gyro(-70, 70, 90)
+
 
 def get_back_to_coupler():
-    g.drive_distance(50, 2)
+    g.drive_distance(60, 3)
     g.drive_condition(-60, d.on_white_left)
-    g.turn_with_gyro(-50, 50, 90)
-    g.drive_distance(-50, 4)
+    g.turn_with_gyro(-60, 60, 90)
+    g.drive_distance(-90, 4)
     u.move_servo(c.FRONT_CLAW, c.FC_OPEN, 100)
     u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 100)
-    msleep(100)
-    g.drive_distance(60, 27)
+    g.drive_distance(80, 27)
     u.move_servo(c.LEFT_ARM, c.LA_SIDE, 20)
-    g.drive_distance(-50, 25)
+
+
+def go_to_other_side():
+    g.drive_distance(90, 40)
+    msleep(100)
+
+
+def return_to_start():
+    g.drive_distance(-90, 25)
+    msleep(100)
 
 
 

@@ -17,10 +17,15 @@ def main():
     a.go_up_ramp()
     a.grab_poms()
     a.deliver_poms()
+    a.smoosh_poms()
     u.move_servo(c.FRONT_ARM, c.FA_UP)
     a.get_back_down_from_ramp()
     a.get_back_to_coupler()
-    # u.DEBUG()
+    a.return_to_start()
+    #a.go_to_other_side()
+    u.DEBUG()
+
+
     # a.smoosh_poms()
     #a.return_to_poms()
     #a.grab_poms()

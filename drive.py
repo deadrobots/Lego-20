@@ -120,9 +120,9 @@ def timed_line_follow_left(time):
     sec = seconds() + time/1000.0
     while seconds() < sec:
         if on_black_left():
-            drive_timed(20, 90, 20)
+            drive_timed(70, 90, 20)
         else:
-            drive_timed(90, 20, 20)
+            drive_timed(90, 70, 20)
         msleep(10)
 
 

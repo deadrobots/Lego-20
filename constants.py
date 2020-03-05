@@ -49,9 +49,9 @@ if IS_PRIME:  # Red Lego
     FA_DROP = 950
     FA_MID = 400  # ground on flat surface
     FA_UP = 0
-    FA_COUPLER_DOWN = 1000
+    FA_COUPLER_DOWN = 1200
     FA_SMOOSH_UP = 950
-    FA_SMOOSH_DOWN = 1200
+    FA_SMOOSH_DOWN = 1350
     FA_KNOCK = 820
     FA_UNDER_BRIDGE = 780
 
