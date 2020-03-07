@@ -191,7 +191,7 @@ def second_grab_poms():
     u.move_servo(c.FRONT_ARM, c.FA_DOWN2, 7)
     g.drive_distance(50, 2.0)  # 1 eeeee
     u.wait_for_button()
-    u.move_servo(c.FRONT_ARM, c.FA_DOWN3, 7)
+    u.move_servo(c.FRONT_ARM, c.FA_DOWN3, 7)      
     u.wait_for_button()
     u.move_servo(c.LEFT_ARM, c.LA_BACK)
     u.wait_for_button()
