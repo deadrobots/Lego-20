@@ -87,16 +87,16 @@ def move_coupler_to_blocks():
     g.turn_with_gyro(-60, 60, 90)
     #square up here
     msleep(100)
-    g.drive_distance(-60, 6)
+    g.drive_distance(-70, 6) #60
     g.drive_condition(60, d.on_white_left)
     u.move_servo(c.FRONT_CLAW, c.FC_OPEN, 100)
     u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 100)
-    g.drive_distance(60, 7)
+    g.drive_distance(100, 7) #60
     u.move_servo(c.FRONT_ARM, c.FA_KNOCK)
-    g.pivot_on_left_wheel(100, 20)
-    g.pivot_on_left_wheel(-100, 25)
+    g.pivot_on_left_wheel(90, 20)
+    g.pivot_on_left_wheel(-90, 22)
     u.move_servo(c. FRONT_ARM, c.FA_COUPLER_DOWN)
-    g.drive_distance(100, 14)
+    g.drive_distance(100, 13.5)
     msleep(50)
     d.set_servo_position(c.LEFT_ARM, c.LA_FRONT)
 
@@ -109,7 +109,7 @@ def back_to_up_ramp_position():
     u.move_servo(c.FRONT_CLAW, c.FC_CLOSED, 100)
     if c.IS_PRIME:
         msleep(50)
-        g.pivot_on_right_wheel(70, 95)  # 90
+        g.pivot_on_right_wheel(70, 92)  #95
     else:
         msleep(50)
         g.pivot_on_right_wheel(70, 92)
@@ -153,7 +153,9 @@ def deliver_poms():
     g.drive_distance(-75, 7)
     g.turn_with_gyro(-70, 50, 76)
     g.drive_distance(-50, 0.5)  # 2
-    u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 8)
+    u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN + 70, 8)
+    msleep(500)
+    u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN - 70, 8)
     u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN + 65, 5)
     d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
     d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
@@ -164,7 +166,7 @@ def deliver_poms():
 
 
 def smoosh_poms():
-    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_UP)
+    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_UP - 50)
     u.move_servo(c.FRONT_CLAW, c.FC_CLOSED_BIN)
     u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 9)
 
