@@ -19,7 +19,7 @@ def main():
     a.deliver_poms()
     a.smoosh_poms()
     a.return_to_poms()
-    a.grab_poms()
+    a.second_grab_poms()
     a.deliver_poms()
     a.smoosh_poms()
     u.move_servo(c.FRONT_ARM, c.FA_UP)

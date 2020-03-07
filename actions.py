@@ -44,7 +44,7 @@ def power_on_test():
     u.move_servo(c.LEFT_ARM, c.LA_FRONT)
     u.move_servo(c.LEFT_ARM, c.LA_BACK)
     u.move_servo(c.LEFT_ARM, c.LA_FRONT)
-    #testing switch
+    # testing switch
     u.wait_for_switch(c.ARM_SWITCH)
     # testing motors
     print("testing motors")
@@ -73,28 +73,28 @@ def power_on_test():
 
 
 def lower_ramp():
-    g.drive_distance(75, 23)
+    g.drive_distance(100, 23)  # 75
     msleep(100)
-    set_servo_position(c.LEFT_ARM, c.LA_SIDE)  #grab coupler
-    g.drive_condition(-60, d.on_white_left)
+    set_servo_position(c.LEFT_ARM, c.LA_SIDE)  # grab coupler
+    g.drive_condition(-75, d.on_white_left)  # -60
     msleep(100)
     d.square_up_black(-50, -50)
     msleep(100)
-
 
 def move_coupler_to_blocks():
     print "move coupler"
     g.turn_with_gyro(-60, 60, 90)
     #square up here
     msleep(100)
-    g.drive_distance(-70, 6) #60
+    g.drive_distance(-70, 6)
     g.drive_condition(60, d.on_white_left)
     u.move_servo(c.FRONT_CLAW, c.FC_OPEN, 100)
     u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 100)
-    g.drive_distance(100, 7) #60
+    g.drive_distance(100, 7)
     u.move_servo(c.FRONT_ARM, c.FA_KNOCK)
     g.pivot_on_left_wheel(90, 20)
     g.pivot_on_left_wheel(-90, 22)
+    d.turn_right_to_line()
     u.move_servo(c. FRONT_ARM, c.FA_COUPLER_DOWN)
     g.drive_distance(100, 13.5)
     msleep(50)
@@ -107,9 +107,9 @@ def back_to_up_ramp_position():
     u.move_servo(c.LEFT_ARM, c.LA_BACK, 100)
     u.move_servo(c.FRONT_ARM, c.FA_UP, 100)
     u.move_servo(c.FRONT_CLAW, c.FC_CLOSED, 100)
-    if c.IS_PRIME:
+    if c.IS_PRIME:  # currently identical
         msleep(50)
-        g.pivot_on_right_wheel(70, 92)  #95
+        g.pivot_on_right_wheel(70, 92)
     else:
         msleep(50)
         g.pivot_on_right_wheel(70, 92)
@@ -153,9 +153,9 @@ def deliver_poms():
     g.drive_distance(-75, 7)
     g.turn_with_gyro(-70, 50, 76)
     g.drive_distance(-50, 0.5)  # 2
-    u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN + 70, 8)
+    u.move_servo(c.FRONT_ARM, c.FA_CENTER_POMS, 8)
     msleep(500)
-    u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN - 70, 8)
+    u.move_servo(c.FRONT_ARM, c.FA_DROP_POMS, 8)
     u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN + 65, 5)
     d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
     d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
@@ -174,8 +174,38 @@ def smoosh_poms():
 def return_to_poms():
     u.move_servo(c.FRONT_ARM, c.FA_MID)
     u.move_servo(c.FRONT_CLAW, c.FC_CLOSED)
-    g.turn_with_gyro(70, -50, 88)    # 90
+    g.turn_with_gyro(70, -50, 88)
     g.drive_distance(-70, 4)
+    #u.move_servo(c.LEFT_ARM, c.LA_SIDE)
+
+
+def second_grab_poms():
+    if (c.IS_CLONE):
+        print "Don't go any further, test all servo positions so that you don't break anything"
+        u.DEBUG()
+    d.line_follow_until_switch()
+    g.drive_distance(-65, 3)
+    u.move_servo(c.FRONT_ARM, c.FA_DOWN1)
+    u.move_servo(c.FRONT_CLAW, c.FC_LESS_OPEN_BIN, 7)
+    g.drive_distance(50, .6)
+    u.move_servo(c.FRONT_ARM, c.FA_DOWN2, 7)
+    g.drive_distance(50, 2.0)  # 1 eeeee
+    u.wait_for_button()
+    u.move_servo(c.FRONT_ARM, c.FA_DOWN3, 7)
+    u.wait_for_button()
+    u.move_servo(c.LEFT_ARM, c.LA_BACK)
+    u.wait_for_button()
+    g.drive_distance(50, 1.5)
+    u.wait_for_button()
+    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED_BIN, 5)
+    u.wait_for_button()
+    g.drive_distance(-50, 1.4)
+    u.wait_for_button()
+    u.move_servo(c.FRONT_ARM, c.FA_DOWN2, 7)
+    g.drive_distance(-50, 1.9)  # 0.9 eeeee
+    u.move_servo(c.FRONT_ARM, c.FA_DOWN1, 7)
+    g.drive_distance(-50, .6)
+    u.move_servo(c.FRONT_ARM, c.FA_MID, 7)
 
 
 def get_back_down_from_ramp():

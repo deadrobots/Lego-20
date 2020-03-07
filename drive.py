@@ -48,6 +48,8 @@ def on_black_left():
 def on_black_right():
     return analog(c.RIGHT_TOPHAT) > c.ON_BLACK
 
+def on_black_far_right():
+    return analog(c.FAR_RIGHT_TOPHAT) > c.ON_BLACK
 
 def on_white_left():
     return analog(c.LEFT_TOPHAT) < c.ON_BLACK
@@ -212,8 +214,13 @@ def square_up_white(left_speed, right_speed):   # drives till black then squares
             right_speed = 0
         drive(left_speed, right_speed)
 
+def turn_right_to_line():
+    drive(10, 0)
+    while not on_black_far_right():
+        msleep(10)
+    drive(0, 0)
 
-#######################################
+######################################
 # loop break timers
 
 
