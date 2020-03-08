@@ -13,6 +13,7 @@ def main():
     a.init()
     a.lower_ramp()
     a.move_coupler_to_blocks()
+    a.back_up_around_blocks()
     a.back_to_up_ramp_position()
     a.go_up_ramp()
     a.grab_poms()
@@ -26,7 +27,7 @@ def main():
     a.get_back_down_from_ramp()
     a.get_back_to_coupler()
     a.return_to_start()
-    #a.go_to_other_side()
+    # a.go_to_other_side()
     u.DEBUG()
 
 

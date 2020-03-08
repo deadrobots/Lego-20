@@ -122,9 +122,9 @@ def timed_line_follow_left(time):
     sec = seconds() + time/1000.0
     while seconds() < sec:
         if on_black_left():
-            drive_timed(70, 90, 20)
+            drive_timed(80, 100, 20)
         else:
-            drive_timed(90, 70, 20)
+            drive_timed(100, 80, 20)
         msleep(10)
 
 
@@ -162,9 +162,9 @@ def timed_line_follow_right_smooth(time):
     sec = seconds() + time/1000.0
     while seconds() < sec:
         if on_black_right():
-            drive_timed(80, 60, 20)
+            drive_timed(90, 70, 20)
         else:
-            drive_timed(60, 80, 20)
+            drive_timed(70, 90, 20)
         msleep(10)
 
 
@@ -215,9 +215,10 @@ def square_up_white(left_speed, right_speed):   # drives till black then squares
         drive(left_speed, right_speed)
 
 def turn_right_to_line():
-    drive(10, 0)
+    drive(0, -20)
     while not on_black_far_right():
-        msleep(10)
+        pass
+    msleep(200)
     drive(0, 0)
 
 ######################################

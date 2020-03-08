@@ -15,7 +15,7 @@ def init():
     print("don't touch me, i'm calibrating!!")
     g.calibrate_gyro()
 
-    # power_on_test()
+    power_on_test()
 
     u.move_servo(c.LEFT_ARM, c.LA_FRONT)
     u.move_servo(c.FRONT_ARM, c.FA_UP)
@@ -70,50 +70,53 @@ def power_on_test():
     msleep(500)
     print("see white")
     g.drive_timed(-50, 500)
+    print(" ")
+    print(" ")
+    print("align robot ")
 
 
 def lower_ramp():
     g.drive_distance(100, 23)  # 75
     msleep(100)
     set_servo_position(c.LEFT_ARM, c.LA_SIDE)  # grab coupler
-    g.drive_condition(-75, d.on_white_left)  # -60
+    g.drive_condition(-80, d.on_white_left)  # -60
     msleep(100)
     d.square_up_black(-50, -50)
     msleep(100)
 
 def move_coupler_to_blocks():
     print "move coupler"
-    g.turn_with_gyro(-60, 60, 90)
+    g.turn_with_gyro(-70, 70, 90)
     #square up here
     msleep(100)
     g.drive_distance(-70, 6)
-    g.drive_condition(60, d.on_white_left)
+    g.drive_condition(90, d.on_white_left)
     u.move_servo(c.FRONT_CLAW, c.FC_OPEN, 100)
     u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 100)
-    g.drive_distance(100, 7)
-    u.move_servo(c.FRONT_ARM, c.FA_KNOCK)
-    g.pivot_on_left_wheel(90, 20)
-    g.pivot_on_left_wheel(-90, 22)
-    d.turn_right_to_line()
-    u.move_servo(c. FRONT_ARM, c.FA_COUPLER_DOWN)
-    g.drive_distance(100, 13.5)
+    g.drive_distance(90, 7)
+    # u.move_servo(c.FRONT_ARM, c.FA_KNOCK)
+    # g.pivot_on_left_wheel(70, 20)
+    # g.pivot_on_left_wheel(-70, 22)
+    # d.turn_right_to_line()
+    # u.move_servo(c. FRONT_ARM, c.FA_COUPLER_DOWN)
+    g.drive_distance(90, 14) #13.5
     msleep(50)
     d.set_servo_position(c.LEFT_ARM, c.LA_FRONT)
 
 
+def back_up_around_blocks():
+    g.drive_distance(-80, 3)
+    g.pivot_on_left_wheel(-70, 25)
+    g.drive_distance(-80, 19)  # back up
+    g.pivot_on_left_wheel(70, 25)
+    g.drive_distance(-70, 12)
+
 def back_to_up_ramp_position():
-    g.drive_timed(-90, 5200)  # square up
-    msleep(100)
     u.move_servo(c.LEFT_ARM, c.LA_BACK, 100)
     u.move_servo(c.FRONT_ARM, c.FA_UP, 100)
     u.move_servo(c.FRONT_CLAW, c.FC_CLOSED, 100)
-    if c.IS_PRIME:  # currently identical
-        msleep(50)
-        g.pivot_on_right_wheel(70, 92)
-    else:
-        msleep(50)
-        g.pivot_on_right_wheel(70, 92)
-    g.drive_distance(80, 17)
+    g.pivot_on_right_wheel(80, 92)
+    g.drive_distance(100, 22)
     g.drive_distance(-70, 4)
     g.pivot_on_left_wheel(80, 90)  # 90
     g.drive_distance(80, 2)
@@ -121,7 +124,7 @@ def back_to_up_ramp_position():
 
 
 def go_up_ramp():
-    d.timed_line_follow_right_smooth(7500)
+    d.timed_line_follow_right_smooth(7200)
     # at the top of the ramp
     g.drive_distance(-90, 2)
     g.turn_with_gyro(0, 85, 82)
@@ -156,7 +159,13 @@ def deliver_poms():
     u.move_servo(c.FRONT_ARM, c.FA_CENTER_POMS, 8)
     msleep(500)
     u.move_servo(c.FRONT_ARM, c.FA_DROP_POMS, 8)
-    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN + 65, 5)
+    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN, 5)
+    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED, 5)
+    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN, 5)
+    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED, 5)
+    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN, 5)
+    u.move_servo(c.FRONT_CLAW, c.FC_CLOSED, 5)
+    u.move_servo(c.FRONT_CLAW, c.FC_COUPLER_OPEN+25, 5)
     d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 175)
     d.drive_timed(c.WIGGLE_SPEED, -c.WIGGLE_SPEED, 350)
     d.drive_timed(-c.WIGGLE_SPEED, c.WIGGLE_SPEED, 350)
@@ -166,7 +175,7 @@ def deliver_poms():
 
 
 def smoosh_poms():
-    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_UP - 50)
+    u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_UP) # had a -50
     u.move_servo(c.FRONT_CLAW, c.FC_CLOSED_BIN)
     u.move_servo(c.FRONT_ARM, c.FA_SMOOSH_DOWN, 9)
 
@@ -184,23 +193,17 @@ def second_grab_poms():
         print "Don't go any further, test all servo positions so that you don't break anything"
         u.DEBUG()
     d.line_follow_until_switch()
-    g.drive_distance(-65, 3)
+    g.drive_distance(-75, 3)
     u.move_servo(c.FRONT_ARM, c.FA_DOWN1)
     u.move_servo(c.FRONT_CLAW, c.FC_LESS_OPEN_BIN, 7)
     g.drive_distance(50, .6)
     u.move_servo(c.FRONT_ARM, c.FA_DOWN2, 7)
     g.drive_distance(50, 2.0)  # 1 eeeee
-    u.wait_for_button()
-    u.move_servo(c.FRONT_ARM, c.FA_DOWN3, 7)      
-    u.wait_for_button()
+    u.move_servo(c.FRONT_ARM, c.FA_DOWN3, 7)
     u.move_servo(c.LEFT_ARM, c.LA_BACK)
-    u.wait_for_button()
     g.drive_distance(50, 1.5)
-    u.wait_for_button()
     u.move_servo(c.FRONT_CLAW, c.FC_CLOSED_BIN, 5)
-    u.wait_for_button()
     g.drive_distance(-50, 1.4)
-    u.wait_for_button()
     u.move_servo(c.FRONT_ARM, c.FA_DOWN2, 7)
     g.drive_distance(-50, 1.9)  # 0.9 eeeee
     u.move_servo(c.FRONT_ARM, c.FA_DOWN1, 7)
@@ -209,23 +212,23 @@ def second_grab_poms():
 
 
 def get_back_down_from_ramp():
-    g.turn_with_gyro(60, -60, 80)
+    g.turn_with_gyro(80, -80, 80)
     u.move_servo(c.LEFT_ARM, c.LA_FRONT, 80)
-    g.drive_distance(-70, 20)
-    g.turn_with_gyro(-70, 70, 90)
-    d.timed_line_follow_left(4500)
-    g.drive_distance(80, 15)
-    g.turn_with_gyro(-70, 70, 90)
+    g.drive_distance(-100, 20)
+    g.turn_with_gyro(-80, 80, 90)
+    d.timed_line_follow_left(4000)
+    g.drive_distance(100, 15)
+    g.turn_with_gyro(-80, 80, 90)
 
 
 def get_back_to_coupler():
-    g.drive_distance(60, 3)
-    g.drive_condition(-60, d.on_white_left)
-    g.turn_with_gyro(-60, 60, 90)
+    # g.drive_distance(60, 3)
+    g.drive_condition(-100, d.on_white_left)
+    g.turn_with_gyro(-80, 80, 90)
     g.drive_distance(-90, 4)
     u.move_servo(c.FRONT_CLAW, c.FC_OPEN, 100)
     u.move_servo(c.FRONT_ARM, c.FA_COUPLER_DOWN, 100)
-    g.drive_distance(80, 27)
+    g.drive_distance(100, 27)
     u.move_servo(c.LEFT_ARM, c.LA_SIDE, 20)
 
 

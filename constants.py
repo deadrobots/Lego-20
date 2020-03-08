@@ -63,7 +63,7 @@ if IS_PRIME:  # Red Lego
     FC_LESS_OPEN_BIN = 900
     FC_CLOSED = 500
     FC_CLOSED_BIN = 100
-    FC_COUPLER_OPEN = 625
+    FC_COUPLER_OPEN = 600
 
 else:  # IS_CLONE (Yellow Lego)
     # sensor values

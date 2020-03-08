@@ -14,7 +14,7 @@ multiplication_factor = 0.000004470956
 if c.IS_PRIME:
     # if the drive is too short, increase inches_to_ticks
     #if the turn is too short, increase turn_conversion
-    INCHES_TO_TICKS = 215
+    INCHES_TO_TICKS = 218
     # subject to change
     TURN_CONVERSION = 5375
 else:
