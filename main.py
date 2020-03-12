@@ -27,7 +27,6 @@ def main():
     a.get_back_down_from_ramp()
     a.get_back_to_coupler()
     a.return_to_start()
-    # a.go_to_other_side()
     u.DEBUG()
 
 

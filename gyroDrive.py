@@ -52,7 +52,7 @@ def calibrate_spin():
 
 def calibrate_drive():
     calibrate_gyro()
-    drive_distance(75, 20)
+    drive_distance(75, 24)
     _freeze_motors()
     msleep(1000)
 
